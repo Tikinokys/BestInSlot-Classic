@@ -22,20 +22,21 @@ Supported lists are:
 
 New changes:
 
-1) 5th Phase for Fury Warriors.
-2) Changed the priorities of the first 4 phases for Fury Warriors.
-3) Fixed some display errors.
-4) Some small changes.
+1. 5th Phase for Fury Warriors.
+2. Changed the priorities of the first 4 phases for Fury Warriors.
+3. Fixed some display errors.
+4. Some small changes.
 
 In Work:
 
-1) 6th Phase for Fury Warriors.
-2) 5th and 6th Phase for Furyprot and Prot Warriors.
-3) 5th Phase Nature Resistance items for all classes.
-4) Shadow Resistance for Warlocks.
-5..) Some other changes.
+1. 6th Phase for Fury Warriors.
+2. 5th and 6th Phase for Furyprot and Prot Warriors.
+3. 5th Phase Nature Resistance items for all classes.
+4. Shadow Resistance for Warlocks.
+5. Some other changes.
 
 I decided to continue working on the addon that Warkstyl3 implemented. Thanks him.
+
 Standart addon:
 https://www.curseforge.com/wow/addons/best-in-slot-classic
 
