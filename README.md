@@ -54,13 +54,21 @@ Other supported commands are:
 - /bis tooltip. Enable or disable the tooltip BIS enrichment. (As from 2.0 only)
 
 
+
 I decided to continue working on the addon that Warkstyl3 implemented. Thanks him.
 
 **Standart addon:**
+
 https://www.curseforge.com/wow/addons/best-in-slot-classic
 
 **Addon supporter:**
+
 Tikinokys
 
 **My github:**
+
 https://github.com/Tikinokys/BestInSlot-Classic
+
+**My curseforge:**
+
+https://www.curseforge.com/wow/addons/best-in-slot-classic-to-be-continued
