@@ -35,6 +35,24 @@ In Work:
 4. Shadow Resistance for Warlocks.
 5. Some other changes.
 
+Usage:
+
+Click on the minimap button or type in /bis or /bestinslot to open the main window.
+
+Other supported commands are:
+
+- /bis settings: Opens the setting pane.
+
+- /bis loglevel level: Set the loglevel of the add-on, it's not recommenced to change this setting.
+
+- /bis reset. Reset the add-on preferences
+
+- /bis help. Shows help with CLI.
+
+- /bis version. Shows the add-on version. (As from 1.5.1 only)
+
+- /bis tooltip. Enable or disable the tooltip BIS enrichment. (As from 2.0 only)
+
 I decided to continue working on the addon that Warkstyl3 implemented. Thanks him.
 
 Standart addon:
