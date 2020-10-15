@@ -16,6 +16,12 @@ local iconHorde = 132485;
 local iconTwoHands_Swords = 135360;
 local iconTwoHands_Staff = 135226;
 
+local moltenCoreId = 2717;
+local zulGurubId = 1977;
+local bwlId = 2677;
+local aqID = 3428;
+local naxId = 3456;
+
 local characterFrames = { 
     ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },    
     ["INDEX"] = { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 9 },
@@ -152,8 +158,8 @@ BIS_specsFileToSpecs = {
     ["Unknown"] = { "Unknown" }
 };
 
-local phases = { 
-    ["NAME"] = { "Phase 1", "Phase 2 ("..PLAYER_V_PLAYER..")", "Phase 3 (BWL)", "Phase 4 ("..DUNGEON_FLOOR_ZULGURUB1 ..")", "Phase 5 (AQ)", "Phase 6 (Naxx)" }, 
+BIS_phases = { 
+    ["NAME"] = { "Phase 1 ("..C_Map.GetAreaInfo(moltenCoreId)..")", "Phase 2 ("..PLAYER_V_PLAYER..")", "Phase 3 ("..C_Map.GetAreaInfo(bwlId)..")", "Phase 4 ("..C_Map.GetAreaInfo(zulGurubId)..")", "Phase 5 ("..C_Map.GetAreaInfo(aqID)..")", "Phase 6 ("..C_Map.GetAreaInfo(naxId)..")" }, 
     ["ICON"] = { 133066   , 132486   ,  134154   , 134085   , 136152   , 134514   },
     ["VALUE"] = { 1       , 2        , 3        , 4         , 5        , 6        },
     ["ENABLED"] = { true , true      , true     , true      , true     , true     }
@@ -164,8 +170,8 @@ local pvpranks = { 7, 8, 11, 12, 14, 16, 17, 18 };
 local function ResetUI()    
     local oneHandIcon, twoHandsIcon;
 
-    for idx, phase in ipairs(phases.NAME) do        
-        _G["frame_PHASE_"..phases.VALUE[idx].."_ICON"]:SetDesaturated(selectedPhase ~= phases.VALUE[idx]);
+    for idx, phase in ipairs(BIS_phases.NAME) do        
+        _G["frame_PHASE_"..BIS_phases.VALUE[idx].."_ICON"]:SetDesaturated(selectedPhase ~= BIS_phases.VALUE[idx]);
     end
 
     for key, value in pairs(characterFrames.NAME) do
@@ -684,8 +690,8 @@ function BIS:ShowManager()
             end
         end                    
         
-        for idx, phase in ipairs(phases.NAME) do            
-            BIS:CreateClickableIconFrame("frame_PHASE_"..phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
+        for idx, phase in ipairs(BIS_phases.NAME) do            
+            BIS:CreateClickableIconFrame("frame_PHASE_"..BIS_phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
         end        
                              
         raid = BestInSlotClassicDB.filter.raid;

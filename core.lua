@@ -18,6 +18,10 @@ local function SetTooltipDefaults()
     if BestInSlotClassicDB.options.bistooltip == nil then
         BestInSlotClassicDB.options.bistooltip = true;
     end
+
+    if BestInSlotClassicDB.options.tooltipPhases == nil then
+        BestInSlotClassicDB.options.tooltipPhases = GetDefaultPhasesChekboxes();
+    end
 end
 
 local function SetLogLevelDefaults()
@@ -69,6 +73,24 @@ local function SetDefaults()
     SetFilterDefaults();
     SetTooltipDefaults();
 end
+
+function BIS:HavePhasesCheckboxesChecked()
+    for idx, value in ipairs(BestInSlotClassicDB.options.tooltipPhases) do
+        if (value) then
+            return true;
+        end;
+    end;
+    return false;
+end;
+
+function BIS:GetDefaultPhasesChekboxes()
+    local phaseValues = {}
+    for idx, phase in ipairs(BIS_phases.NAME) do
+        phaseValues[idx] = false;
+    end
+
+    return phaseValues;
+end;
 
 function BIS:ResetDefaults()
     BestInSlotClassicDB = nil;

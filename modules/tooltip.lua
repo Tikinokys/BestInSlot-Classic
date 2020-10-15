@@ -503,82 +503,104 @@ function BIS:OnGameTooltipSetItem(frame)
     local slot = BIS_ITEMS[itemId].Slot;
     local gender = UnitSex("player") - 1;    
 
+    local phases = BestInSlotClassicDB.options.tooltipPhases;
+    if (BIS:HavePhasesCheckboxesChecked() ~= true) then
+        for idx, _ in ipairs(BIS_phases.NAME) do
+            phases[idx] = idx >= bis_currentPhaseId;
+        end
+    end
+
+    local firstElement = true;
+    local phasesHeader = "";
+    for idx, phaseEnabled in ipairs(phases) do
+        if (phaseEnabled) then
+            if firstElement == true then
+                phasesHeader = phasesHeader .. "P" ..idx;
+                firstElement = false;
+            else
+                phasesHeader = phasesHeader .. " > " .. "P" ..idx;
+            end
+        end;
+    end;
+
     BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
     BIS_LibExtraTip:AddLine(frame,"# BIS-Classic:",r,g,b,true);
-    --BIS_LibExtraTip:AddDoubleLine(frame,"Class - Spec", "P1 > P2 > P3 > P4 > P5 > P6" ,r,g,b, r,g,b, true);    
-    BIS_LibExtraTip:AddDoubleLine(frame,"Class - Races - Spec", "P4 > P5 > P6" ,r,g,b, r,g,b, true);    
+    BIS_LibExtraTip:AddDoubleLine(frame,"Class - Races - Spec", phasesHeader ,r,g,b, r,g,b, true);    
     BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
 
     function printLine(value)
         local color = RAID_CLASS_COLORS[C_CreatureInfo.GetClassInfo(value.classId).classFile];
-            local text = "";        
-            local add = false;
-    
-            if BIS_dataSpecs[value.classId].SPEC[value.specId] == nil then
-                BIS:logmsg("Invalid spec found for ".. C_CreatureInfo.GetClassInfo(value.classId).className .. " specId: " .. value.specId, LVL_DEBUG);
-                return;
-            end
-            
-            local target = "|T"..BIS_dataSpecs[value.classId].ICON[1]..":14:14|t - ";        
-    
-            if value.races ~= nil then
-                for idx, race in pairs(value.races) do
-                    if BIS:containsValue(BIS_races[faction], race) then                    
-                        local a, b, c, d = unpack(BIS_classes[race].TEXT_COORD[gender]);
-                        a = a * 256;
-                        b = b * 256;
-                        c = c * 256;
-                        d = d * 256;
-                        target = target.."|T"..iconRacePath..":14:14:0:0:256:256:"..a..":"..b..":"..c..":"..d.."|t ";                
-                        add = true;
-                    end
-                end
-            else
-                for idx, race in pairs(BIS_races[faction]) do                
-                    if BIS:containsValue(BIS_classes[race].CLASS, value.classId) then                    
-                        local a, b, c, d = unpack(BIS_classes[race].TEXT_COORD[gender]);
-                        a = a * 256;
-                        b = b * 256;
-                        c = c * 256;
-                        d = d * 256;
-                        target = target.."|T"..iconRacePath..":14:14:0:0:256:256:"..a..":"..b..":"..c..":"..d.."|t ";                
-                        add = true;
-                    end
-                end
-                add = true;
-            end
-    
-            if slot == 16 and value.offHand then
-                target = target.."(OH) ";
-            elseif slot == 16 then
-                target = target.."(MH) ";
-            end        
-    
-            target = target.."- "..BIS_dataSpecs[value.classId].SPEC[value.specId];
-    
-            if phase > 1 then
-                for i = bis_currentPhaseId + 1, phase, 1 do
-                    text = text.."N/A > ";
+        local text = "";        
+        local add = false;
+
+        if BIS_dataSpecs[value.classId].SPEC[value.specId] == nil then
+            BIS:logmsg("Invalid spec found for ".. C_CreatureInfo.GetClassInfo(value.classId).className .. " specId: " .. value.specId, LVL_DEBUG);
+            return;
+        end
+        
+        local target = "|T"..BIS_dataSpecs[value.classId].ICON[1]..":14:14|t - ";        
+
+        if value.races ~= nil then
+            for idx, race in pairs(value.races) do
+                if BIS:containsValue(BIS_races[faction], race) then                    
+                    local a, b, c, d = unpack(BIS_classes[race].TEXT_COORD[gender]);
+                    a = a * 256;
+                    b = b * 256;
+                    c = c * 256;
+                    d = d * 256;
+                    target = target.."|T"..iconRacePath..":14:14:0:0:256:256:"..a..":"..b..":"..c..":"..d.."|t ";                
+                    add = true;
                 end
             end
-    
-            --if phase <= 1 then
-            --    text = (value.P1).." > "..(value.P2).." > "..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
-            --elseif phase <= 2 then
-            --    text = text..(value.P2).." > "..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
-            --elseif phase <= 3 then
-            --    text = text..(value.P3).." > "..(value.P4).." > "..(value.P5).." > "..(value.P6);
-            if phase <= 4 then
-                text = text..(value.P4).." > "..(value.P5).." > "..(value.P6);
-            elseif phase <= 5 then
-                text = text..(value.P5).." > "..(value.P6);
-            else 
-                text = text..(value.P6);
+        else
+            for idx, race in pairs(BIS_races[faction]) do                
+                if BIS:containsValue(BIS_classes[race].CLASS, value.classId) then                    
+                    local a, b, c, d = unpack(BIS_classes[race].TEXT_COORD[gender]);
+                    a = a * 256;
+                    b = b * 256;
+                    c = c * 256;
+                    d = d * 256;
+                    target = target.."|T"..iconRacePath..":14:14:0:0:256:256:"..a..":"..b..":"..c..":"..d.."|t ";                
+                    add = true;
+                end
             end
-            
-            if add then
-                BIS_LibExtraTip:AddDoubleLine(frame, target, text, color.r, color.g, color.b, color.r, color.g, color.b, true);
-            end
+            add = true;
+        end
+
+        if slot == 16 and value.offHand then
+            target = target.."(OH) ";
+        elseif slot == 16 then
+            target = target.."(MH) ";
+        end        
+
+        target = target.."- "..BIS_dataSpecs[value.classId].SPEC[value.specId];
+
+        local firstElement = true;
+        for idx, phaseEnabled in ipairs(phases) do
+            if (phaseEnabled and idx < phase) then
+                if (firstElement) then
+                    text = text .. "N/A";
+                    firstElement = false;
+                else 
+                    text = text .. " > N/A";
+                end;
+            end;
+        end;
+
+        for idx, phaseEnabled in ipairs(phases) do
+            if (phaseEnabled and idx >= phase) then
+                if (firstElement) then
+                    text = text .. value["P"..idx]
+                    firstElement = false
+                else
+                    text = text .. " > " .. value["P"..idx]
+                end;
+            end;
+        end;
+        
+        if add then
+            BIS_LibExtraTip:AddDoubleLine(frame, target, text, color.r, color.g, color.b, color.r, color.g, color.b, true);
+        end
     end
 
     for key, value in pairs(BIS_TOOLTIP_RANKING[itemId][suffixId][faction][raid][worldboss][pvp][14]) do
