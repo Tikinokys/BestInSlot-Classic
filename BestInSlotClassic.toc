@@ -3,7 +3,7 @@
 ## Interface: 11305
 ## Title: Best In Slot Classic
 ## Notes: Keep track of your Best in Slot list!
-## Version: 2.5.3
+## Version: 2.5.5
 ## SavedVariables: BestInSlotClassicGlobalDB
 ## SavedVariablesPerCharacter: BestInSlotClassicDB
 
