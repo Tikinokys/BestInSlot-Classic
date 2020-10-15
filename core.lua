@@ -20,7 +20,7 @@ local function SetTooltipDefaults()
     end
 
     if BestInSlotClassicDB.options.tooltipPhases == nil then
-        BestInSlotClassicDB.options.tooltipPhases = GetDefaultPhasesChekboxes();
+        BestInSlotClassicDB.options.tooltipPhases = BIS:GetDefaultPhasesChekboxes();
     end
 end
 
