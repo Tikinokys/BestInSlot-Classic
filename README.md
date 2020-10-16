@@ -25,7 +25,8 @@
 1. 5th Phase for Fury Warriors.
 2. Changed the priorities of the first 4 phases for Fury Warriors.
 3. Fixed some display errors.
-4. Some small changes.
+4. Some small changes and bug fix.
+5. Added option to change show phases on tooltip.
 
 **In Work:**
 
