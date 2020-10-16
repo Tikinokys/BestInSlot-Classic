@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 # 2.5.6 (16.10.2020)
 - Added option to change show phases on tooltip (Check addon options).
 - Added some enchants for all classes.
 - Fix info about addon (changelog and version).
 
-=======
->>>>>>> b821d91d6c78b84471198f3181225078db1050be
 # 2.5.5 (15.10.2020)
 - Changed the priorities of some items.
 
