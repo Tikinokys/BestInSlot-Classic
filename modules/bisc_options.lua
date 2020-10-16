@@ -3,6 +3,8 @@ local settings;
 local loglevelDropdown;
 local minimapCheckbox;
 local minimapPosSlider;
+local defaultPhaseCheckbox;
+local phasesCheckboxes = {};
 
 local function HandleLogLevelDropDown(self, arg1, arg2, checked)    
     local args = arg1:lower();    
@@ -38,6 +40,39 @@ local function CreateDropDownList(name, parent, width, x, y)
     return dropdown;
 end
 
+local function RecheckPhasesGroups()
+    if (BIS:HavePhasesCheckboxesChecked()) then
+        defaultPhaseCheckbox:SetChecked(false);
+    else
+        defaultPhaseCheckbox:SetChecked(true);
+        for idx, checkbox in ipairs(phasesCheckboxes) do
+            checkbox:SetChecked(false);
+        end
+    end
+end;
+
+local function CreatePhaseCheckBoxes(name, parent, x, y, width, height)
+    local text = parent:CreateFontString(name.."Label", "OVERLAY");
+    text:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y);
+    text:SetFont("Fonts\\FRIZQT__.TTF", 14);
+    text:SetText("Phases shown in tooltip");
+
+    y = y - 15;
+
+    defaultPhaseCheckbox = BIS:CreateCheckBox(name .. "_default", "Default", parent, x, y, width, height, "Current and next phases", function(self)
+        BestInSlotClassicDB.options.tooltipPhases = BIS:GetDefaultPhasesChekboxes();
+        RecheckPhasesGroups();
+    end)
+    for idx, phase in ipairs(BIS_phases.NAME) do            
+        phasesCheckboxes[idx] = BIS:CreateCheckBox(name .. idx, BIS_phases.NAME[idx], parent, x, y - (height * idx), width, height, BIS_phases.NAME[name], function(self)        
+            local isChecked = phasesCheckboxes[idx]:GetChecked();     
+            BestInSlotClassicDB.options.tooltipPhases[idx] = isChecked;   
+            RecheckPhasesGroups();     
+        end);
+        phasesCheckboxes[idx]:SetChecked(BestInSlotClassicDB.options.tooltipPhases[idx])
+    end
+end
+
 function BIS:CreateSettingsInterface()
     local settings = CreateFrame("FRAME", "BestInSlotClassicsettings", UIParent);
     settings.name = "BestInSlotClassic";
@@ -66,26 +101,29 @@ function BIS:CreateSettingsInterface()
 
     loglevelDropdown = CreateDropDownList("BISCLogLevelDD", settings, 80, 60, -40);
 
-    minimapCheckbox = BIS:CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 70, -85, 150, 20, "Show/Hide Minimap Icon", function(self)        
+    minimapCheckbox = BIS:CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 20, -85, 150, 20, "Show/Hide Minimap Icon", function(self)        
         local isChecked = minimapCheckbox:GetChecked();        
         BestInSlotClassicDB.minimap.hide = (not isChecked);        
         BIS:UpdateMinimapIcon();        
     end);
 
-    minimapPosSlider = BIS:CreateSlider("BISCMinimapPosSlider", "Minimap Icon Position", settings, 0, 360, 20, -130, function(self, newValue)
+    minimapPosSlider = BIS:CreateSlider("BISCMinimapPosSlider", "Minimap Icon Position", settings, 0, 360, 40, -100, function(self, newValue)
         if newValue ~= BestInSlotClassicDB.minimap.minimapPos then
             BestInSlotClassicDB.minimap.minimapPos = newValue;
             BIS:UpdateMinimapIcon();
         end
     end)
 
+    CreatePhaseCheckBoxes("BisCheckBoxPhases", settings, 20, -200, 250, 20);
+
     BIS:SetValues();
 
     InterfaceOptions_AddCategory(settings);
 end
 
-function BIS:SetValues()    
+function BIS:SetValues()
     minimapCheckbox:SetChecked(not BestInSlotClassicDB.minimap.hide);
     minimapPosSlider:SetValue(BestInSlotClassicDB.minimap.minimapPos);
+    RecheckPhasesGroups();
 end
 
