@@ -691,7 +691,7 @@ function BIS:ShowManager()
         end                    
         
         for idx, phase in ipairs(BIS_phases.NAME) do            
-            BIS:CreateClickableIconFrame("frame_PHASE_"..BIS_phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, phases.ICON[idx], nil, HandlePhasesIcon, false);            
+            BIS:CreateClickableIconFrame("frame_PHASE_"..BIS_phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, BIS_phases.ICON[idx], nil, HandlePhasesIcon, false);            
         end        
                              
         raid = BestInSlotClassicDB.filter.raid;
