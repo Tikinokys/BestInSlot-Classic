@@ -435,6 +435,8 @@ function BIS:OnTooltipSetItem(frame)
         BIS_TOOLTIP:AddLine("|T"..GetItemIcon(19815)..":"..bis_defaultIconSize.."|t "..GetItemInfo(19815).." - "..BIS:GetLocalizedMapName(309).." - "..BIS:GetLocalizedObjectName(180228));    
     end    
 
+    BIS:OnGameTooltipSetItem(frame, BIS_TOOLTIP, false);
+
     BIS_TOOLTIP:Show();
 end
 
@@ -458,7 +460,7 @@ function BIS:CreateGameTooltip(name, parent)
     return tooltip;
 end
 
-function BIS:OnGameTooltipSetItem(frame)
+function BIS:OnGameTooltipSetItem(frame, parent, addToFrame)
     if not BestInSlotClassicDB.options.bistooltip then
         return;
     end    
@@ -523,10 +525,17 @@ function BIS:OnGameTooltipSetItem(frame)
         end;
     end;
 
-    BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
-    BIS_LibExtraTip:AddLine(frame,"# BIS-Classic:",r,g,b,true);
-    BIS_LibExtraTip:AddDoubleLine(frame,"Class - Races - Spec", phasesHeader ,r,g,b, r,g,b, true);    
-    BIS_LibExtraTip:AddLine(frame," ",r,g,b,true);
+    if (addToFrame) then
+        parent:AddLine(frame," ",r,g,b,true);
+        parent:AddLine(frame,"# BIS-Classic:",r,g,b,true);
+        parent:AddDoubleLine(frame,"Class - Races - Spec", phasesHeader ,r,g,b, r,g,b, true);
+        parent:AddLine(frame," ",r,g,b,true);
+    else
+        parent:AddLine(" ",r,g,b,true);
+        parent:AddLine("# BIS-Classic:",r,g,b,true);
+        parent:AddDoubleLine("Class - Races - Spec", phasesHeader ,r,g,b, r,g,b, true);
+        parent:AddLine(" ",r,g,b,true);
+    end;
 
     function printLine(value)
         local color = RAID_CLASS_COLORS[C_CreatureInfo.GetClassInfo(value.classId).classFile];
@@ -599,7 +608,11 @@ function BIS:OnGameTooltipSetItem(frame)
         end;
         
         if add then
-            BIS_LibExtraTip:AddDoubleLine(frame, target, text, color.r, color.g, color.b, color.r, color.g, color.b, true);
+            if (addToFrame) then
+                parent:AddDoubleLine(frame, target, text, color.r, color.g, color.b, color.r, color.g, color.b, true);
+            else
+                parent:AddDoubleLine(target, text, color.r, color.g, color.b, color.r, color.g, color.b, true);
+            end;
         end
     end
 
