@@ -196,7 +196,7 @@ function BIS:PrintPlayerInfo()
 end
 
 local function OnGameTooltipSetItem(tooltip)
-    BIS:OnGameTooltipSetItem(tooltip);
+    BIS:OnGameTooltipSetItem(tooltip, BIS_LibExtraTip, true);
 end
 
 BIS_LibExtraTip = LibStub("LibExtraTip-1");
