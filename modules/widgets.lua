@@ -38,14 +38,14 @@ local function HideParent(self)
     BIS:ShowManager();
 end
 
-function BIS:CreateWindow(name, height, width)
+function BIS:CreateWindow(name, width, height)
     local window = CreateFrame("FRAME", "BISManager", UIParent);
     window:EnableMouse(true);
     window:SetMovable(true);
     window:SetResizable(false);
     window:SetPoint("CENTER");
     window:SetMinResize(32, 32);
-    window:SetSize(height, width);
+    window:SetSize(width, height);
     window:SetUserPlaced(true);
     window:SetBackdrop(backdrop);
     window:SetBackdropBorderColor(1, 1, 1, 1);

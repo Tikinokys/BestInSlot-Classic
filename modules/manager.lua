@@ -26,7 +26,7 @@ local characterFrames = {
     ["NAME"] = { "Heads", "Necks", "Shoulders", "Backs", "Chests", "Shirts", "Tabards", "Wrists", "Gloves", "Belts", "Legs", "Boots", "MainRings", "OffRings", "MainTrinkets", "OffTrinkets", "MainHands", "OffHands", "Rangeds", "Bags" },
     ["INDEX"] = { 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 9 },
     ["ICON"] = {
-        "UI-PaperDoll-Slot-Head.PNG", "UI-PaperDoll-Slot-Neck.PNG", "UI-PaperDoll-Slot-Shoulder.PNG", "UI-PaperDoll-Slot-REar.PNG", "UI-PaperDoll-Slot-Chest.PNG", "UI-PaperDoll-Slot-Shirt.PNG", "UI-PaperDoll-Slot-Tabard.PNG",
+        "UI-PaperDoll-Slot-Head.PNG", "UI-PaperDoll-Slot-Neck.PNG", "UI-PaperDoll-Slot-Shoulder.PNG", "UI-PaperDoll-Slot-Chest.PNG", "UI-PaperDoll-Slot-Chest.PNG", "UI-PaperDoll-Slot-Shirt.PNG", "UI-PaperDoll-Slot-Tabard.PNG",
         "UI-PaperDoll-Slot-Wrists.PNG", "UI-PaperDoll-Slot-Hands.PNG", "UI-PaperDoll-Slot-Waist.PNG", "UI-PaperDoll-Slot-Legs.PNG", "UI-PaperDoll-Slot-Feet.PNG", "UI-PaperDoll-Slot-Finger.PNG",
         "UI-PaperDoll-Slot-Finger.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-Trinket.PNG", "UI-PaperDoll-Slot-MainHand.PNG", "UI-PaperDoll-Slot-SecondaryHand.PNG", "UI-PaperDoll-Slot-Ranged.PNG", "UI-PaperDoll-Slot-Bag.PNG"
     },
@@ -67,21 +67,21 @@ BIS_dataSpecs = {
             ["VALUE"] = { 1, 2, 3 },
             ["ICON"] = { 135328 },
             ["MAGIC_RESISTANCE"] = { { 1, 4, 5, nil, nil, nil }, { 2, 4, 5, nil, nil, nil }, { 3, 4, 5, nil, nil, nil } },
-            ["WEAPON_ICONS"] = { { 12940, 19364 }, { 19019, nil }, { 19019, nil } }
+            ["WEAPON_ICONS"] = { { 19019, 17182 }, { 19019, nil }, { 19019, nil } }
     },
     [2] = { ["SPEC"] = { "Holy", "Protection", "Retribution (AP)", "Retribution (Spelladin)" },
             ["SPEC_ICONS"] = { 135920, 135893, 135873, 135959 },
             ["VALUE"] = { 1, 2, 3, 4 },
             ["ICON"] = { 132325 },
             ["MAGIC_RESISTANCE"] = { { 1, 5, 8, nil, nil, nil }, { 2, 6, 8, nil, nil, nil }, { 3, 7, 8, nil, nil, nil }, { 4, 7, 8, nil, nil, nil } },
-            ["WEAPON_ICONS"] = { { 19360, nil }, { 19360, nil }, { nil, 19364 }, { 19019, 19169 } }
+            ["WEAPON_ICONS"] = { { 19360, nil }, { 19360, nil }, { nil, 19364 }, { 19019, 17182 } }
     },
     [3] = { ["SPEC"] = { "Normal", "Melee Weave" },
             ["SPEC_ICONS"] = { 135489, 132215 },
             ["VALUE"] = { 1, 2 },
             ["ICON"] = { 135495 },
             ["MAGIC_RESISTANCE"] = { { 1, 5, 3, nil, 4, nil }, { 2, 5, 3, nil, 4, nil } },
-            ["WEAPON_ICONS"] = { { 18805, 18520 }, { 18805, 18520 } }
+            ["WEAPON_ICONS"] = { { 19019, 17182 }, { 19019, 17182 } }
     },
     [4] = { ["SPEC"] = { "Swords", "Daggers" },
             ["SPEC_ICONS"] = { 135328, 135641 },
@@ -95,35 +95,35 @@ BIS_dataSpecs = {
             ["VALUE"] = { 1, 2 },
             ["ICON"] = { 135167 },
             ["MAGIC_RESISTANCE"] = { { 1, 3, nil, nil, nil, nil }, { 2, 3, nil, nil, nil, nil } },
-            ["WEAPON_ICONS"] = { { 19360, 18608 }, { 19360, 18609 } }
+            ["WEAPON_ICONS"] = { { 19360, 19355 }, { 19360, 19355 } }
     },
     [7] = { ["SPEC"] = { "Restoration", "Enhancement" },
             ["SPEC_ICONS"] = { 136052, 136018 },
             ["VALUE"] = { 1, 2 },
             ["ICON"] = { 133437 },
             ["MAGIC_RESISTANCE"] = { { 1, 3, nil, nil, nil, nil }, { 2, 4, nil, nil, nil, nil } },
-            ["WEAPON_ICONS"] = { { 19360, 19356 }, { nil, 19364 } }
+            ["WEAPON_ICONS"] = { { 19360, 19355 }, { nil, 19364 } }
     },
     [8] = { ["SPEC"] = { "Frost/Fire", "Zero SP", "Alternative" },
             ["SPEC_ICONS"] = { 135866, 132643, 134614 },
             ["VALUE"] = { 1, 2, 3 },
             ["ICON"] = { 135150 },
             ["MAGIC_RESISTANCE"] = { { 1, 4, 5, 7, 6, nil }, { 2, 4, 5, 7, 6, nil }, { 3, 4, 5, 7, 6, nil } },
-            ["WEAPON_ICONS"] = { { 17103, 19356 }, { 17103, 19356 }, { 17103, 19356 } }
+            ["WEAPON_ICONS"] = { { 19360, 19355 }, { 19360, 19355 }, { 19360, 19355 } }
     },
-    [9] = { ["SPEC"] = { "Any" },
+    [9] = { ["SPEC"] = { "Affliction / Demonology / Destruction" },
             ["SPEC_ICONS"] = { 136163 },
             ["VALUE"] = { 1 },
             ["ICON"] = { 136020 },
             ["MAGIC_RESISTANCE"] = { { 1, 2, nil, nil, nil, nil } },
-            ["WEAPON_ICONS"] = { { 17103, 19356 } }
+            ["WEAPON_ICONS"] = { { 19360, 19355 } }
     },
     [11] = { ["SPEC"] = { "Feral Tank (Value)", "Feral Tank (Mitigation)", "Feral Tank (Threat)", "Feral DPS", "Restoration", "Balance" },
              ["SPEC_ICONS"] = { 132276, 132276, 132276, 132115, 136041, 136036 },
              ["VALUE"] = { 1, 2, 3, 4, 5, 6 },
              ["ICON"] = { 134297 },
              ["MAGIC_RESISTANCE"] = { { 1, 7, 9, 10, 8, 11 }, { 2, 7, 9, 10, 8, 11 }, { 3, 7, 9, 10, 8, 11 }, { 4, 7, 9, 10, 8, 11 }, { 6, 7, 9, 10, 8, 11 }, { 6, 7, 9, 10, 8, 11 } },
-             ["WEAPON_ICONS"] = { { 19335, 9449 }, { 19335, 9449 }, { 19335, 9449 }, { 18805, 9449 }, { 19360, 19356 }, { 19360, 19356 } }
+             ["WEAPON_ICONS"] = { { 19019, 17182 }, { 19019, 17182 }, { 19019, 17182 }, { 19019, 17182 }, { 19360, 19355 }, { 19360, 19355 } }
     }
 };
 
@@ -165,6 +165,29 @@ BIS_phases = {
     ["ENABLED"] = { true, true, true, true, true, true }
 };
 
+local function ShouldShowSlot(index)
+    -- Offhand oneHandIcon twoHands
+    if index == 18 and twoHands then
+        return false;
+    end
+    -- Bags for hunters only
+    if index == 20 and selectedClass ~= 3 then
+        return false;
+    end
+    return true;
+end
+
+local function ShouldShowBISSlots(index)
+    if not ShouldShowSlot(index) then
+        return false
+    end
+    -- Shirts and Tabards don't have bis items
+    if index == 6 or index == 7 then
+        return false;
+    end
+    return true;
+end
+
 local pvpranks = { 7, 8, 11, 12, 14, 16, 17, 18 };
 
 local function ResetUI()
@@ -178,6 +201,7 @@ local function ResetUI()
         if characterFrames.ENCHANT[key] then
             for i = 1, 2, 1 do
                 _G["frame_" .. value .. "_" .. i .. "_ENCHANT_ICON"]:SetTexture(nil);
+                _G["frame_" .. value .. "_" .. i .. "_ENCHANT_ICON"]:Hide();
                 _G["EnchantFrame_" .. value .. "_" .. i]:SetScript("OnEnter", nil);
                 _G["EnchantFrame_" .. value .. "_" .. i]:SetScript("OnLeave", nil);
             end
@@ -185,6 +209,7 @@ local function ResetUI()
         for i = 1, 3, 1 do
             _G["frame_" .. value .. "_" .. i .. "_CHECK_ICON"]:SetTexture(nil);
             _G["frame_" .. value .. "_" .. i .. "_ICON"]:SetTexture(rootPaperDoll .. characterFrames.ICON[key]);
+            _G["frame_" .. value .. "_" .. i .. "_ICON"]:Hide();
             _G["frame" .. value .. "_" .. i .. "_TEXT"]:SetText("");
             _G["ItemFrame_" .. value .. "_" .. i]:SetScript("OnEnter", nil);
             _G["ItemFrame_" .. value .. "_" .. i]:SetScript("OnLeave", nil);
@@ -224,13 +249,6 @@ local function ResetUI()
     end
 
     if selectedSpec ~= nil then
-        for key, value in pairs(magicResistances.NAME) do
-            if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then
-                _G["frame_MAGIC_" .. key]:Hide();
-            else
-                _G["frame_MAGIC_" .. key]:Show();
-            end
-        end
         _G["frame_PVP"]:Show();
         _G["frame_WORLD_BOSS"]:Show();
         _G["frame_SOULBOUND"]:Show();
@@ -271,27 +289,73 @@ local function ResetUI()
         twoHandsIcon = BIS_dataSpecs[selectedClass].WEAPON_ICONS[selectedSpec][2];
 
         if oneHandIcon == nil then
-            _G["frame_TWO_HANDS"]:Show();
-            _G["frame_ONE_HAND"]:Hide();
             BestInSlotClassicDB.filter.twohands = true;
             twoHands = true;
         elseif twoHandsIcon == nil then
-            _G["frame_TWO_HANDS"]:Hide();
-            _G["frame_ONE_HAND"]:Show();
             BestInSlotClassicDB.filter.twohands = false;
             twoHands = false;
+        end
+
+        if (oneHandIcon ~= nil and twoHandsIcon ~= nil) then
+            if oneHandIcon == nil then
+                _G["frame_TWO_HANDS"]:Show();
+                _G["frame_ONE_HAND"]:Hide();
+            elseif twoHandsIcon == nil then
+                _G["frame_TWO_HANDS"]:Hide();
+                _G["frame_ONE_HAND"]:Show();
+            end
+        else
+            _G["frame_TWO_HANDS"]:Hide();
+            _G["frame_ONE_HAND"]:Hide();
         end
 
         BIS:UpdateIcon("frame_ONE_HAND", GetItemIcon(oneHandIcon), nil);
         BIS:UpdateIcon("frame_TWO_HANDS", GetItemIcon(twoHandsIcon), nil);
 
+        --for key, value in pairs(magicResistances.NAME) do
+        --    if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then
+        --        _G["frame_MAGIC_" .. key]:Show();
+        --    else
+        --        _G["frame_MAGIC_" .. key]:Show();
+        --    end
+        --end
+
         for idx, value in pairs(magicResistances.NAME) do
+            _G["frame_MAGIC_" .. idx]:Show();
             if selectedMagicResist == idx then
                 _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
+                _G["frame_MAGIC_" .. idx .. "_ICON"]:SetTexture("Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png");
             else
-                _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(true);
+                if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][idx] == nil then
+                    _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
+                    _G["frame_MAGIC_" .. idx .. "_ICON"]:SetVertexColor(1, 0, 0, 0.8);
+                else
+                    _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(true);
+                end
             end
         end
+
+        for key, value in pairs(characterFrames.NAME) do
+            if ShouldShowBISSlots(key) then
+                if characterFrames.ENCHANT[key] then
+                    for i = 1, 2, 1 do
+                        _G["frame_" .. value .. "_" .. i .. "_ENCHANT_ICON"]:Show();
+                    end
+                end
+
+                for i = 1, 3, 1 do
+                    _G["frame_" .. value .. "_" .. i .. "_ICON"]:Show();
+                end
+            end
+
+            if ShouldShowSlot(key) then
+                _G["IconFrame_" .. value]:Show();
+            else
+                _G["IconFrame_" .. value]:Hide();
+            end
+        end
+
+        _G["frame_SelectSpecLabel"]:Hide();
     else
         for key, value in pairs(magicResistances.NAME) do
             _G["frame_MAGIC_" .. key]:Hide();
@@ -306,6 +370,7 @@ local function ResetUI()
         for idx, value in pairs(pvpranks) do
             _G["frame_PVP_RANK_" .. pvpranks[idx]]:Hide();
         end
+        _G["frame_SelectSpecLabel"]:Show();
     end
 end
 
@@ -556,6 +621,11 @@ local function HandleMagicIcon(self)
     if magicResist == selectedMagicResist then
         return ;
     end
+
+    if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][magicResist] == nil then
+        return ;
+    end
+
     selectedMagicResist = magicResist;
     Update();
 end
@@ -670,26 +740,36 @@ function BIS:ShowManager()
         else
             selectedRank = BestInSlotClassicDB.filter.pvprank;
         end
-        window = BIS:CreateWindow("BISManager", 1100, 750);
+        window = BIS:CreateWindow("BISManager", 1230, 750);
         window.childFrame = {};
         window.enchantFrame = {};
 
         BIS_TOOLTIP = BIS:CreateGameTooltip("BIS_TOOLTIP", window);
 
-        gender = UnitSex("player") - 1;
-
-        for i, race in ipairs(BIS_races[faction]) do
-            BIS:CreateClickableIconFrame("frame_" .. race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 330 + ((i - 1) * 25), -15, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
-            for j, class in ipairs(BIS_classes[race].CLASS) do
-                BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 450 + ((j - 1) * 25), -15, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
-                for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do
-                    BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k], window, spec, 25, 25, 625 + ((k - 1) * 25), -15, BIS_dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
-                end
-            end
+        for i, phase in ipairs(BIS_phases.NAME) do
+            BIS:CreateClickableIconFrame("frame_PHASE_" .. BIS_phases.VALUE[i], window, phase, 25, 25, 515 + (i * 25), -20, BIS_phases.ICON[i], nil, HandlePhasesIcon, false);
         end
 
-        for idx, phase in ipairs(BIS_phases.NAME) do
-            BIS:CreateClickableIconFrame("frame_PHASE_" .. BIS_phases.VALUE[idx], window, phase, 25, 25, 100 + ((idx - 1) * 25), -15, BIS_phases.ICON[idx], nil, HandlePhasesIcon, false);
+        gender = UnitSex("player") - 1;
+
+        local raceIndex = 0;
+        for i = table.getn(BIS_races[faction]), 1, -1 do
+            local race = BIS_races[faction][i];
+            BIS:CreateClickableIconFrame("frame_" .. race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 570 - (raceIndex * 25), -50, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
+            for j, class in ipairs(BIS_classes[race].CLASS) do
+                BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 635 + ((j - 1) * 25), -50, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
+                for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do
+                    local specsWidth = table.getn(BIS_dataSpecs[class].SPEC) * 25;
+                    BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k], window, spec, 25, 25, 615 - (specsWidth / 2) + ((k - 1) * 25), -85, BIS_dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
+                end
+            end
+            raceIndex = raceIndex + 1;
+        end
+
+        local magicIndex = 0;
+        for idx, value in pairs(magicResistances.NAME) do
+            BIS:CreateClickableIconFrame("frame_MAGIC_" .. idx, window, magicResistances.NAME[idx]:gsub("^%l", string.upper), 20, 20, 570 + ((magicIndex - 1) * 25), -120, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png", nil, HandleMagicIcon, false);
+            magicIndex = magicIndex + 1;
         end
 
         raid = BestInSlotClassicDB.filter.raid;
@@ -697,13 +777,10 @@ function BIS:ShowManager()
         twoHands = BestInSlotClassicDB.filter.twohands;
         worldBoss = BestInSlotClassicDB.filter.worldboss;
 
-        BIS:CreateClickableIconFrame("frame_RAID", window, RAID .. " BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
-        BIS:CreateClickableIconFrame("frame_DUNGEON", window, DUNGEONS .. " BIS", 16, 16, 500, -50, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
+        BIS:CreateClickableIconFrame("frame_RAID", window, RAID .. " BIS", 16, 16, 570, -150, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[89], HandleRaidIcon, false);
+        BIS:CreateClickableIconFrame("frame_DUNGEON", window, DUNGEONS .. " BIS", 16, 16, 570, -150, "Interface\\QuestFrame\\QuestTypeIcons", QUEST_TAG_TCOORDS[81], HandleRaidIcon, false);
 
-        BIS:CreateClickableIconFrame("frame_WORLD_BOSS", window, RAID_INFO_WORLD_BOSS, 16, 16, 525, -50, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
-
-        BIS:CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
-        BIS:CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, 16, 16, 550, -50, nil, nil, HandleTwoHandsIcon, false);
+        BIS:CreateClickableIconFrame("frame_WORLD_BOSS", window, RAID_INFO_WORLD_BOSS, 16, 16, 595, -150, "Interface\\GROUPFRAME\\UI-Group-LeaderIcon", nil, HandleWorldBossIcon, not worldBoss);
 
         if faction == "Horde" then
             pvpIcon = iconHorde;
@@ -711,17 +788,21 @@ function BIS:ShowManager()
             pvpIcon = iconAlliance;
         end
 
-        BIS:CreateClickableIconFrame("frame_PVP", window, PLAYER_V_PLAYER, 16, 16, 575, -50, pvpIcon, nil, HandlePvPIcon, not pvp);
+        BIS:CreateClickableIconFrame("frame_PVP", window, PLAYER_V_PLAYER, 16, 16, 620, -150, pvpIcon, nil, HandlePvPIcon, not pvp);
 
-        BIS:CreateClickableIconFrame("frame_SOULBOUND", window, ITEM_SOULBOUND, 16, 16, 600, -50, "Interface\\LootFrame\\LootToast", { 612 / 1024, 644 / 1024, 224 / 256, 256 / 256 }, HandleSoulboundIcon, not BestInSlotClassicDB.filter.soulboundBis);
+        BIS:CreateClickableIconFrame("frame_SOULBOUND", window, ITEM_SOULBOUND, 16, 16, 650, -150, "Interface\\LootFrame\\LootToast", { 612 / 1024, 644 / 1024, 224 / 256, 256 / 256 }, HandleSoulboundIcon, not BestInSlotClassicDB.filter.soulboundBis);
 
         for idx, value in pairs(pvpranks) do
-            BIS:CreateClickableIconFrame("frame_PVP_RANK_" .. value, window, GetPVPRankInfo(value) .. " (R" .. (value - 4) .. ")", 16, 16, 450 + ((idx - 1) * 25), -75, format("%s%02d", "Interface\\PvPRankBadges\\PvPRank", value - 4), nil, HandlePvpRankIcon, false);
+            BIS:CreateClickableIconFrame("frame_PVP_RANK_" .. value, window, GetPVPRankInfo(value) .. " (R" .. (value - 4) .. ")", 16, 16, 520 + ((idx - 1) * 25), -175, format("%s%02d", "Interface\\PvPRankBadges\\PvPRank", value - 4), nil, HandlePvpRankIcon, false);
         end
 
-        for idx, value in pairs(magicResistances.NAME) do
-            BIS:CreateClickableIconFrame("frame_MAGIC_" .. idx, window, magicResistances.NAME[idx]:gsub("^%l", string.upper), 25, 25, 800 + ((idx - 1) * 25), -15, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png", nil, HandleMagicIcon, false);
-        end
+        local text = window:CreateFontString("frame_SelectSpecLabel");
+        text:SetPoint("TOPLEFT", window, "TOPLEFT", 368, -120);
+        text:SetFont("Fonts\\FRIZQT__.TTF", 16);
+        text:SetText("Please, select phase, race, class and spec on the list on the top");
+
+        BIS:CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON, iconSize, iconSize, 515, -585, nil, nil, HandleTwoHandsIcon, false);
+        BIS:CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, iconSize, iconSize, 515, -585, nil, nil, HandleTwoHandsIcon, false);
 
         local startX, startY;
         local offsetX, offsetY;
@@ -732,15 +813,15 @@ function BIS:ShowManager()
             window.childFrame[i] = {};
             window.enchantFrame[i] = {};
             if characterFrames.FRAME_ALIGNMENT[i] == "LEFT" then
-                startX = 20;
-                startY = -45 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));
+                startX = 20 + smallIcon + 5;
+                startY = -15 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));
             elseif characterFrames.FRAME_ALIGNMENT[i] == "RIGHT" then
-                startX = 1000;
-                startY = -45 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));
+                startX = 1125;
+                startY = -15 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));
             else
-                startX = 550 - ((iconSize) * 3 / 2) + iconSize * (characterFrames.INDEX[i] - 1);
-                startY = -680;
-            end
+                startX = 485 - ((iconSize) * 3 / 2) + iconSize * (characterFrames.INDEX[i] - 1) + i * 7;
+                startY = -675 + smallIcon + 5;
+            end ;
 
             BIS:CreateIconFrame("IconFrame_" .. characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll .. characterFrames.ICON[i]);
 
@@ -748,15 +829,15 @@ function BIS:ShowManager()
                 for j = 1, 2 do
                     window.enchantFrame[i][j] = CreateFrame("Frame", "EnchantFrame_" .. characterFrames.NAME[i] .. "_" .. j, window);
                     window.enchantFrame[i][j]:SetSize(17, 17);
-                    if characterFrames.ICON_ALIGNMENT[i] == "RIGHT" then
-                        offsetX = iconSize - smallIcon;
+                    if characterFrames.ICON_ALIGNMENT[i] == "RIGHT" and characterFrames.FRAME_ALIGNMENT[i] ~= "BOTTOM" then
+                        offsetX = -smallIcon - 5;
                         offsetY = (iconSize - smallIcon) * (j - 1);
-                    elseif characterFrames.ICON_ALIGNMENT[i] == "LEFT" then
-                        offsetX = 0;
+                    elseif characterFrames.ICON_ALIGNMENT[i] == "LEFT" and characterFrames.FRAME_ALIGNMENT[i] ~= "BOTTOM" then
+                        offsetX = iconSize + 5;
                         offsetY = (iconSize - smallIcon) * (j - 1);
                     else
                         offsetX = (iconSize - smallIcon) * (j - 1);
-                        offsetY = 0;
+                        offsetY = iconSize + 5;
                     end
                     window.enchantFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY - offsetY);
                     BIS:CreateIconFrame("frame_" .. characterFrames.NAME[i] .. "_" .. j .. "_ENCHANT", window.enchantFrame[i][j], smallIcon, smallIcon, 0, 0, nil);
@@ -774,36 +855,35 @@ function BIS:ShowManager()
                     checkOffsetY = 0;
                     iconOffsetX = smallIcon;
                     iconOffsetY = 0;
-                    textOffsetX = smallIcon + smallIcon;
+                    textOffsetX = smallIcon + smallIcon + 3;
                     textOffsetY = 0;
                     textJustify = "LEFT";
                 elseif characterFrames.ICON_ALIGNMENT[i] == "LEFT" then
-                    offsetX = -200;
+                    offsetX = -220;
                     offsetY = -(smallIcon * (j - 1));
-                    checkOffsetX = 200 - smallIcon;
+                    checkOffsetX = 220 - smallIcon;
                     checkOffsetY = 0;
-                    iconOffsetX = 200 - smallIcon - smallIcon;
+                    iconOffsetX = 220 - smallIcon - smallIcon - 2;
                     iconOffsetY = 0;
-                    textOffsetX = -smallIcon;
+                    textOffsetX = -smallIcon - 4;
                     textOffsetY = 0;
                     textJustify = "RIGHT";
                 else
-                    offsetX = smallIcon - (iconSize);
-                    offsetY = iconSize - (iconSize * (j - 1) / 3);
+                    offsetX = 0;
+                    offsetY = iconSize + 6 - (iconSize * (j - 1) / 3);
                     checkOffsetX = 0;
-                    checkOffsetY = 0
+                    checkOffsetY = 0;
                     iconOffsetX = smallIcon;
                     iconOffsetY = 0;
-                    textOffsetX = smallIcon + smallIcon;
+                    textOffsetX = smallIcon + smallIcon + 3;
                     textOffsetY = 0;
                     textJustify = "LEFT";
                 end
                 window.childFrame[i][j]:SetPoint("TOPLEFT", window, "TOPLEFT", startX + offsetX, startY + offsetY);
                 BIS:CreateIconFrame("frame_" .. characterFrames.NAME[i] .. "_" .. j .. "_CHECK", window.childFrame[i][j], smallIcon, smallIcon, checkOffsetX, checkOffsetY, nil);
                 BIS:CreateIconFrame("frame_" .. characterFrames.NAME[i] .. "_" .. j, window.childFrame[i][j], smallIcon, smallIcon, iconOffsetX, iconOffsetY, rootPaperDoll .. characterFrames.ICON[i]);
-                BIS:CreateTextFrame(characterFrames.NAME[i] .. "_" .. j, window.childFrame[i][j], 180, smallIcon, textOffsetX, textOffsetY, textJustify);
+                BIS:CreateTextFrame(characterFrames.NAME[i] .. "_" .. j, window.childFrame[i][j], 200, smallIcon, textOffsetX, textOffsetY, textJustify);
             end
-
         end
     end
 
