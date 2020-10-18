@@ -7,5 +7,5 @@ RACES_IDX = {
     ["Scourge"] = 5,
     ["Tauren"] = 6,
     ["Gnome"] = 7,
-    ["Troll"] = 8    
+    ["Troll"] = 8
 }
