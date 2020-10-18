@@ -101,20 +101,20 @@ function BIS:CreateSettingsInterface()
 
     loglevelDropdown = CreateDropDownList("BISCLogLevelDD", settings, 80, 60, -40);
 
-    minimapCheckbox = BIS:CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 20, -85, 150, 20, "Show/Hide Minimap Icon", function(self)        
+    minimapCheckbox = BIS:CreateCheckBox("BISCMinimapCB", "Show Minimap Icon", settings, 20, -85, 150, 20, "Show/Hide Minimap Icon", function(self)
         local isChecked = minimapCheckbox:GetChecked();        
         BestInSlotClassicDB.minimap.hide = (not isChecked);        
         BIS:UpdateMinimapIcon();        
     end);
 
-    minimapPosSlider = BIS:CreateSlider("BISCMinimapPosSlider", "Minimap Icon Position", settings, 0, 360, 40, -100, function(self, newValue)
+    minimapPosSlider = BIS:CreateSlider("BISCMinimapPosSlider", "Minimap Icon Position", settings, 0, 360, 20, -125, function(self, newValue)
         if newValue ~= BestInSlotClassicDB.minimap.minimapPos then
             BestInSlotClassicDB.minimap.minimapPos = newValue;
             BIS:UpdateMinimapIcon();
         end
     end)
 
-    CreatePhaseCheckBoxes("BisCheckBoxPhases", settings, 20, -200, 250, 20);
+    CreatePhaseCheckBoxes("BisCheckBoxPhases", settings, 20, -180, 250, 20);
 
     BIS:SetValues();
 
