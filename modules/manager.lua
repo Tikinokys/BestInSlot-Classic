@@ -234,15 +234,35 @@ local function ResetUI()
                 _G["frame_" .. race .. "_" .. class]:Hide();
             end
             for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do
+                local resists = BIS_dataSpecs[class].MAGIC_RESISTANCE[k];
+
                 if selectedClass == class then
                     _G["frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k]]:Show();
                     if selectedSpec == BIS_dataSpecs[class].VALUE[k] then
                         _G["frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k] .. "_ICON"]:SetDesaturated(false);
+
+                        for l, res in pairs(resists) do
+                            _G["frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l]:Show();
+
+                            if l == selectedMagicResist then
+                                _G["frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l .. "_ICON" ]:SetDesaturated(false);
+                            else
+                                _G["frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l .. "_ICON" ]:SetDesaturated(true);
+                            end
+                        end
                     else
                         _G["frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k] .. "_ICON"]:SetDesaturated(true);
+
+                        for l, res in pairs(resists) do
+                            _G["frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l]:Hide();
+                        end
                     end
                 else
                     _G["frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k]]:Hide();
+
+                    for l, res in pairs(resists) do
+                        _G["frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l]:Hide();
+                    end
                 end
             end
         end
@@ -320,20 +340,20 @@ local function ResetUI()
         --    end
         --end
 
-        for idx, value in pairs(magicResistances.NAME) do
-            _G["frame_MAGIC_" .. idx]:Show();
-            if selectedMagicResist == idx then
-                _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
-                _G["frame_MAGIC_" .. idx .. "_ICON"]:SetTexture("Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png");
-            else
-                if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][idx] == nil then
-                    _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
-                    _G["frame_MAGIC_" .. idx .. "_ICON"]:SetVertexColor(1, 0, 0, 0.8);
-                else
-                    _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(true);
-                end
-            end
-        end
+        --for idx, value in pairs(magicResistances.NAME) do
+        --    _G["frame_MAGIC_" .. idx]:Show();
+        --    if selectedMagicResist == idx then
+        --        _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
+        --        _G["frame_MAGIC_" .. idx .. "_ICON"]:SetTexture("Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png");
+        --    else
+        --        if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][idx] == nil then
+        --            _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
+        --            _G["frame_MAGIC_" .. idx .. "_ICON"]:SetVertexColor(1, 0, 0, 0.8);
+        --        else
+        --            _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(true);
+        --        end
+        --    end
+        --end
 
         for key, value in pairs(characterFrames.NAME) do
             if ShouldShowBISSlots(key) then
@@ -357,9 +377,9 @@ local function ResetUI()
 
         _G["frame_SelectSpecLabel"]:Hide();
     else
-        for key, value in pairs(magicResistances.NAME) do
-            _G["frame_MAGIC_" .. key]:Hide();
-        end
+        --for key, value in pairs(magicResistances.NAME) do
+        --    _G["frame_MAGIC_" .. key]:Hide();
+        --end
         _G["frame_PVP"]:Hide();
         _G["frame_WORLD_BOSS"]:Hide();
         _G["frame_RAID"]:Hide();
@@ -616,14 +636,13 @@ local function HandleSoulboundIcon(self)
     Update();
 end
 
-local function HandleMagicIcon(self)
-    local magicResist = tonumber(self:GetName():match("[^_]+_[^_]+_([^_]+)"));
+local function HandleMagicIcon(magicResist)
     if magicResist == selectedMagicResist then
-        return ;
+        return;
     end
 
     if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][magicResist] == nil then
-        return ;
+        return;
     end
 
     selectedMagicResist = magicResist;
@@ -758,18 +777,24 @@ function BIS:ShowManager()
             BIS:CreateClickableIconFrame("frame_" .. race, window, C_CreatureInfo.GetRaceInfo(race).raceName, 25, 25, 570 - (raceIndex * 25), -50, iconRacePath, BIS_classes[race].TEXT_COORD[gender], HandleRacesIcon, false);
             for j, class in ipairs(BIS_classes[race].CLASS) do
                 BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class, window, C_CreatureInfo.GetClassInfo(class).className, 25, 25, 635 + ((j - 1) * 25), -50, BIS_dataSpecs[class].ICON[1], nil, HandleClassIcon, false);
+
+                local specsWidth = table.getn(BIS_dataSpecs[class].SPEC) * 25;
                 for k, spec in ipairs(BIS_dataSpecs[class].SPEC) do
-                    local specsWidth = table.getn(BIS_dataSpecs[class].SPEC) * 25;
                     BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class .. "_" .. BIS_dataSpecs[class].VALUE[k], window, spec, 25, 25, 615 - (specsWidth / 2) + ((k - 1) * 25), -85, BIS_dataSpecs[class].SPEC_ICONS[k], nil, HandleSpecIcon, false);
+
+                    local resists = BIS_dataSpecs[class].MAGIC_RESISTANCE[k];
+                    local resistWidth = table.getn(resists) * 25
+                    for l, res in pairs(resists) do
+                        --BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l, window, magicResistances.NAME[res]:gsub("^%l", string.upper), 20, 20, 615 - (resistWidth / 2) + ((l - 1) * 25), -120, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[res] .. ".png", nil, HandleMagicIcon, false);
+                        local selectFunction = function()
+                            HandleMagicIcon(l)
+                        end
+
+                        BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l, window, magicResistances.LABEL[l], 20, 20, 615 - (resistWidth / 2) + ((l - 1) * 25), -120, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[l] .. ".png", nil, selectFunction, false);
+                        end
                 end
             end
             raceIndex = raceIndex + 1;
-        end
-
-        local magicIndex = 0;
-        for idx, value in pairs(magicResistances.NAME) do
-            BIS:CreateClickableIconFrame("frame_MAGIC_" .. idx, window, magicResistances.NAME[idx]:gsub("^%l", string.upper), 20, 20, 570 + ((magicIndex - 1) * 25), -120, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png", nil, HandleMagicIcon, false);
-            magicIndex = magicIndex + 1;
         end
 
         raid = BestInSlotClassicDB.filter.raid;
