@@ -292,10 +292,12 @@ local function ResetUI()
                     _G["frame_PVP_RANK_" .. value .. "_ICON"]:SetDesaturated(true);
                 end
             end
+            _G["frame_CLickFullSpecLabel"]:SetPoint("TOPLEFT", window, "TOPLEFT", 458, -200);
         else
             for idx, value in pairs(pvpranks) do
                 _G["frame_PVP_RANK_" .. value]:Hide();
             end
+            _G["frame_CLickFullSpecLabel"]:SetPoint("TOPLEFT", window, "TOPLEFT", 458, -175);
         end
         if twoHands then
             _G["frame_TWO_HANDS"]:Show();
@@ -332,29 +334,6 @@ local function ResetUI()
         BIS:UpdateIcon("frame_ONE_HAND", GetItemIcon(oneHandIcon), nil);
         BIS:UpdateIcon("frame_TWO_HANDS", GetItemIcon(twoHandsIcon), nil);
 
-        --for key, value in pairs(magicResistances.NAME) do
-        --    if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][key] == nil then
-        --        _G["frame_MAGIC_" .. key]:Show();
-        --    else
-        --        _G["frame_MAGIC_" .. key]:Show();
-        --    end
-        --end
-
-        --for idx, value in pairs(magicResistances.NAME) do
-        --    _G["frame_MAGIC_" .. idx]:Show();
-        --    if selectedMagicResist == idx then
-        --        _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
-        --        _G["frame_MAGIC_" .. idx .. "_ICON"]:SetTexture("Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[idx] .. ".png");
-        --    else
-        --        if BIS_dataSpecs[selectedClass].MAGIC_RESISTANCE[selectedSpec][idx] == nil then
-        --            _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(false);
-        --            _G["frame_MAGIC_" .. idx .. "_ICON"]:SetVertexColor(1, 0, 0, 0.8);
-        --        else
-        --            _G["frame_MAGIC_" .. idx .. "_ICON"]:SetDesaturated(true);
-        --        end
-        --    end
-        --end
-
         for key, value in pairs(characterFrames.NAME) do
             if ShouldShowBISSlots(key) then
                 if characterFrames.ENCHANT[key] then
@@ -368,6 +347,9 @@ local function ResetUI()
                 end
             end
 
+            _G["IconFrame_" .. value]:SetScript("OnMouseDown", nil);
+            _G["IconFrame_" .. value]:SetScript("OnEnter", nil);
+            _G["IconFrame_" .. value]:SetScript("OnLeave", nil);
             if ShouldShowSlot(key) then
                 _G["IconFrame_" .. value]:Show();
             else
@@ -376,10 +358,8 @@ local function ResetUI()
         end
 
         _G["frame_SelectSpecLabel"]:Hide();
+        _G["frame_CLickFullSpecLabel"]:Show();
     else
-        --for key, value in pairs(magicResistances.NAME) do
-        --    _G["frame_MAGIC_" .. key]:Hide();
-        --end
         _G["frame_PVP"]:Hide();
         _G["frame_WORLD_BOSS"]:Hide();
         _G["frame_RAID"]:Hide();
@@ -391,6 +371,7 @@ local function ResetUI()
             _G["frame_PVP_RANK_" .. pvpranks[idx]]:Hide();
         end
         _G["frame_SelectSpecLabel"]:Show();
+        _G["frame_CLickFullSpecLabel"]:Hide();
     end
 end
 
@@ -499,6 +480,18 @@ local function Update()
             end
         end
 
+        if _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"] then
+            _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"]:SetScript("OnEnter", function()
+                if (selectedSpec) then
+                    _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"].hoverTexture:Show();
+                end
+            end);
+
+            _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"]:SetScript("OnLeave", function()
+                _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"].hoverTexture:Hide();
+            end);
+        end
+
         temp_slot = i;
         minIndex = 0;
         maxIndex = 4;
@@ -513,9 +506,21 @@ local function Update()
             minIndex = 3;
             maxIndex = 7;
         end
-        if temp[temp_slot] ~= nil then
-            for idx, value in pairs(temp[temp_slot]) do
 
+        if temp[temp_slot] ~= nil then
+            if _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"] ~= nil then
+                local foundItems = {};
+                for k,v in pairs(temp[temp_slot]) do
+                    foundItems[k] = v
+                end
+
+                _G["IconFrame_" .. INVSLOT_IDX[i] .. "s"]:SetScript("OnMouseDown", function ()
+                    --print(temp_slot);
+                    BIS:ShowFullList(foundItems);
+                end);
+            end
+
+            for idx, value in pairs(temp[temp_slot]) do
                 if idx > minIndex and idx < maxIndex then
                     item = Item:CreateFromItemID(value.ItemId);
 
@@ -560,7 +565,7 @@ local function Update()
                     end);
                 end
             end
-        end
+            end
     end
 end
 
@@ -659,61 +664,6 @@ local function HandlePvpRankIcon(self)
     Update();
 end
 
-function BIS:UpdateIcon(name, icon, textCoord)
-    _G[name .. "_ICON"]:SetTexture(icon);
-    if textCoord ~= nil then
-        _G[name .. "_ICON"]:SetTexCoord(unpack(textCoord));
-    end
-    _G[name .. "_ICON"]:SetAllPoints(_G[name]);
-end
-
-function BIS:CreateIconFrame(name, parent, width, height, x, y, icon, textCoord)
-    local frame = CreateFrame("Frame", name, parent);
-
-    frame:SetWidth(width); -- Set these to whatever height/width is needed 
-    frame:SetHeight(height); -- for your Texture
-
-    local texture = frame:CreateTexture(name .. "_ICON", "BACKGROUND");
-    BIS:UpdateIcon(name, icon, textCoord);
-    frame.texture = texture;
-
-    frame:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y);
-
-    return frame;
-end
-
-function BIS:CreateClickableIconFrame(name, parent, label, width, height, x, y, icon, textCoord, callback, desaturated)
-    local frame = BIS:CreateIconFrame(name, parent, width, height, x, y, icon, textCoord);
-
-    _G[name]:SetScript("OnEnter", function(self)
-        BIS_TOOLTIP:SetOwner(_G[name]);
-        BIS_TOOLTIP:SetPoint("TOPLEFT", _G[name], "TOPRIGHT", 220, -13);
-        BIS_TOOLTIP:SetText(label);
-        BIS_TOOLTIP:Show();
-    end);
-    _G[name]:SetScript("OnLeave", function(self)
-        BIS_TOOLTIP:Hide();
-    end);
-
-    _G[name]:SetScript("OnMouseDown", callback);
-
-    _G[name .. "_ICON"]:SetDesaturated(desaturated);
-
-    return frame;
-end
-
-function BIS:CreateTextFrame(name, parent, width, height, x, y, justify)
-    local frame = parent:CreateFontString("frame" .. name .. "_TEXT", "OVERLAY");
-
-    frame:SetPoint("LEFT", x, y);
-    frame:SetJustifyH(justify);
-    frame:SetFontObject("GameFontHighlight");
-    frame:SetWidth(width);
-    frame:SetHeight(height);
-
-    return frame;
-end
-
 local function handleKey(self, event, arg1, ...)
     if event == "ESCAPE" then
         BIS:ShowManager();
@@ -785,7 +735,6 @@ function BIS:ShowManager()
                     local resists = BIS_dataSpecs[class].MAGIC_RESISTANCE[k];
                     local resistWidth = table.getn(resists) * 25
                     for l, res in pairs(resists) do
-                        --BIS:CreateClickableIconFrame("frame_" .. race .. "_" .. class .. "_" .. spec .. "_" .. "magic_" .. l, window, magicResistances.NAME[res]:gsub("^%l", string.upper), 20, 20, 615 - (resistWidth / 2) + ((l - 1) * 25), -120, "Interface\\PaperDollInfoFrame\\SpellSchoolIcon" .. magicResistances.ID[res] .. ".png", nil, HandleMagicIcon, false);
                         local selectFunction = function()
                             HandleMagicIcon(l)
                         end
@@ -822,9 +771,22 @@ function BIS:ShowManager()
         end
 
         local text = window:CreateFontString("frame_SelectSpecLabel");
-        text:SetPoint("TOPLEFT", window, "TOPLEFT", 368, -120);
-        text:SetFont("Fonts\\FRIZQT__.TTF", 16);
+        text:SetPoint("TOPLEFT", window, "TOPLEFT", 388, -120);
+        text:SetFontObject(GameFontNormal);
+        local font = text:GetFont();
+        text:SetFont(font, 16);
         text:SetText("Please, select phase, race, class and spec on the list on the top");
+
+        local fullText = window:CreateFontString("frame_CLickFullSpecLabel");
+        if (pvp) then
+            fullText:SetPoint("TOPLEFT", window, "TOPLEFT", 458, -200);
+        else
+            fullText:SetPoint("TOPLEFT", window, "TOPLEFT", 458, -175);
+        end
+        fullText:SetFontObject(GameFontNormal);
+        font = fullText:GetFont();
+        fullText:SetFont(font, 16);
+        fullText:SetText("Click on slot icon to see full list of BiS items");
 
         BIS:CreateClickableIconFrame("frame_ONE_HAND", window, INVTYPE_WEAPON, iconSize, iconSize, 515, -585, nil, nil, HandleTwoHandsIcon, false);
         BIS:CreateClickableIconFrame("frame_TWO_HANDS", window, TWO_HANDED, iconSize, iconSize, 515, -585, nil, nil, HandleTwoHandsIcon, false);
@@ -841,14 +803,21 @@ function BIS:ShowManager()
                 startX = 20 + smallIcon + 5;
                 startY = -15 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));
             elseif characterFrames.FRAME_ALIGNMENT[i] == "RIGHT" then
-                startX = 1125;
+                startX = 1115;
                 startY = -15 - ((iconSize + 10) * (characterFrames.INDEX[i] - 1));
             else
                 startX = 485 - ((iconSize) * 3 / 2) + iconSize * (characterFrames.INDEX[i] - 1) + i * 7;
                 startY = -675 + smallIcon + 5;
             end ;
 
-            BIS:CreateIconFrame("IconFrame_" .. characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll .. characterFrames.ICON[i]);
+            local infoFrame = BIS:CreateIconFrame("IconFrame_" .. characterFrames.NAME[i], window, iconSize, iconSize, startX, startY, rootPaperDoll .. characterFrames.ICON[i]);
+
+            infoFrame.hoverTexture = infoFrame:CreateTexture(nil,"OVERLAY",nil);
+            infoFrame.hoverTexture:SetPoint("TOPLEFT", infoFrame, "TOPLEFT", -2, 2);
+            infoFrame.hoverTexture:SetPoint("BOTTOMRIGHT", infoFrame, "BOTTOMRIGHT", 2, -2);
+            infoFrame.hoverTexture:SetTexture("Interface\\Addons\\BestInSlotClassic\\assets\\white_icon");
+            infoFrame.hoverTexture:SetVertexColor(0.5, 0.75, 1, 0.75);
+            infoFrame.hoverTexture:Hide();
 
             if characterFrames.ENCHANT[i] then
                 for j = 1, 2 do

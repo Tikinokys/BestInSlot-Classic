@@ -46,6 +46,7 @@ modules\cli.lua
 modules\minimap.lua
 modules\bisc_options.lua
 modules\sql.lua
+modules\full_list.lua
 
 # Config.
 config\bis_config.lua

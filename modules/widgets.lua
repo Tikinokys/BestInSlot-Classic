@@ -38,8 +38,11 @@ local function HideParent(self)
     BIS:ShowManager();
 end
 
-function BIS:CreateWindow(name, width, height)
-    local window = CreateFrame("FRAME", "BISManager", UIParent);
+function BIS:CreateWindow(name, width, height, parent)
+    if not parent then
+        parent = UIParent;
+    end
+    local window = CreateFrame("FRAME", name, parent);
     window:EnableMouse(true);
     window:SetMovable(true);
     window:SetResizable(false);
@@ -52,13 +55,14 @@ function BIS:CreateWindow(name, width, height)
     window:SetBackdropColor(0, 0, 0, 1);
     window:SetClampedToScreen(true);
     window:SetToplevel(true);
+    window:SetFrameStrata("FULLSCREEN_DIALOG");
     window:SetScript("OnMouseDown", StartMovingOrSizing);
     window:SetScript("OnMouseUp", StopMovingOrSizing);
     window:SetScript("OnHide", StopMovingOrSizing);
 
     -- The Close Button. It's assigned as a local variable so you can change how it behaves.
     window.CloseButton = CreateFrame("Button", nil, window, "UIPanelCloseButton");
-    window.CloseButton:SetPoint("TOPRIGHT", window, "TOPRIGHT", 4, 3);
+    window.CloseButton:SetPoint("TOPRIGHT", window, "TOPRIGHT", 0, 0);
     window.CloseButton:SetScript("OnClick", HideParent);
 
     return window;
@@ -90,4 +94,62 @@ function BIS:CreateSlider(name, label, parent, min, max, x, y, callback)
     _G[name .. "High"]:SetText(max);
 
     return slider;
+end
+
+function BIS:UpdateIcon(name, icon, textCoord)
+    _G[name .. "_ICON"]:SetTexture(icon);
+    if textCoord ~= nil then
+        _G[name .. "_ICON"]:SetTexCoord(unpack(textCoord));
+    end
+    _G[name .. "_ICON"]:SetAllPoints(_G[name]);
+end
+
+function BIS:CreateIconFrame(name, parent, width, height, x, y, icon, textCoord)
+    local frame = CreateFrame("Frame", name, parent);
+
+    frame:SetWidth(width); -- Set these to whatever height/width is needed
+    frame:SetHeight(height); -- for your Texture
+
+    local texture = frame:CreateTexture(name .. "_ICON", "BACKGROUND");
+    BIS:UpdateIcon(name, icon, textCoord);
+    frame.texture = texture;
+
+    frame:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y);
+
+    return frame;
+end
+
+function BIS:CreateClickableIconFrame(name, parent, label, width, height, x, y, icon, textCoord, callback, desaturated)
+    local frame = BIS:CreateIconFrame(name, parent, width, height, x, y, icon, textCoord);
+
+    _G[name]:SetScript("OnEnter", function(self)
+        BIS_TOOLTIP:SetOwner(_G[name]);
+        BIS_TOOLTIP:SetPoint("TOPLEFT", _G[name], "TOPRIGHT", 220, -13);
+        BIS_TOOLTIP:SetText(label);
+        BIS_TOOLTIP:Show();
+    end);
+    _G[name]:SetScript("OnLeave", function(self)
+        BIS_TOOLTIP:Hide();
+    end);
+
+    _G[name]:SetScript("OnMouseDown", callback);
+
+    _G[name .. "_ICON"]:SetDesaturated(desaturated);
+
+    return frame;
+end
+
+function BIS:CreateTextFrame(name, parent, width, height, x, y, justify, point)
+    local frame = parent:CreateFontString("frame" .. name .. "_TEXT", "OVERLAY");
+
+    if point == nil then
+        point = "LEFT"
+    end
+    frame:SetPoint(point, x, y);
+    frame:SetJustifyH(justify);
+    frame:SetFontObject("GameFontHighlight");
+    frame:SetWidth(width);
+    frame:SetHeight(height);
+
+    return frame;
 end
