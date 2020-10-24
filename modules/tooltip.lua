@@ -512,13 +512,13 @@ function BIS:OnGameTooltipSetItem(frame, parent, addToFrame)
         end
     end
 
-    local firstElement = true;
+    local firstPhaseElement = true;
     local phasesHeader = "";
     for idx, phaseEnabled in ipairs(phases) do
         if (phaseEnabled) then
-            if firstElement == true then
+            if firstPhaseElement == true then
                 phasesHeader = phasesHeader .. "P" .. idx;
-                firstElement = false;
+                firstPhaseElement = false;
             else
                 phasesHeader = phasesHeader .. " > " .. "P" .. idx;
             end
