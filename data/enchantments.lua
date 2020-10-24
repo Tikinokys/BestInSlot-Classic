@@ -29,6 +29,7 @@ BIS_ENCHANT[15400] = { Phase = 1, Source = "ITEM", Slot = { 1, 7 }, Weapon = fal
 BIS_ENCHANT[15402] = { Phase = 1, Source = "ITEM", Slot = { 1, 7 }, Weapon = false, TwoHands = false, Raid = false, Level = 0, ItemId = 11647, Recipe = nil };
 BIS_ENCHANT[15404] = { Phase = 1, Source = "ITEM", Slot = { 1, 7 }, Weapon = false, TwoHands = false, Raid = false, Level = 0, ItemId = 11648, Recipe = nil };
 BIS_ENCHANT[15937] = { Phase = 1, Source = "ITEM", Slot = { 1, 7 }, Weapon = false, TwoHands = false, Raid = false, Level = 0, ItemId = 11645, Recipe = nil };
+BIS_ENCHANT[22840] = {Phase = 1, Source = "ITEM", Slot = { 1, 7 } , Weapon = false, TwoHands = false, Raid = false, Level = 0, ItemId = 18329, Recipe = nil };
 BIS_ENCHANT[16623] = { Phase = 1, Source = "ITEM", Slot = { 17 }, Weapon = false, TwoHands = false, Raid = false, Level = 0, ItemId = 12645, Recipe = 12692 };
 BIS_ENCHANT[20008] = { Phase = 1, Source = "SPELL", Slot = { 9 }, Weapon = false, TwoHands = false, Raid = false, Level = 255, ItemId = nil, Recipe = 16214 };
 BIS_ENCHANT[20009] = { Phase = 1, Source = "SPELL", Slot = { 9 }, Weapon = false, TwoHands = false, Raid = false, Level = 270, ItemId = nil, Recipe = 16218 };
