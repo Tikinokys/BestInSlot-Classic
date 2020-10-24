@@ -154,7 +154,7 @@ table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18380, Priority = 11
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18404, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 }); -- Подвеска Клыка Ониксии
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18500, Priority = 13, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18537, Priority = 8, OffHand = false, Races = nil, SuffixId = 0 });
-table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18541, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 });
+table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18541, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 });
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18812, Priority = 9, OffHand = false, Races = nil, SuffixId = 0 }); -- Накулачники истинного боя
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18817, Priority = 7, OffHand = false, Races = nil, SuffixId = 0 }); -- Корона разрушения
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 18821, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 }); -- Кольцо быстрого удара
@@ -221,7 +221,7 @@ table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21242, Priority = 2,
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21242, Priority = 2, OffHand = false, Races = { 3, 4, 5, 6, 7, 8 }, SuffixId = 0 }); -- Благословенная киражская секира
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21329, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 }); -- Корона Завоевателя
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21330, Priority = 1, OffHand = false, Races = nil, SuffixId = 0 }); -- Наплеч Завоевателя
-table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21331, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 }); -- Кираса Завоевателя
+table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21331, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 }); -- Кираса Завоевателя
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21332, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 }); -- Набедренники завоевателя
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21333, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 }); -- Наголенники Завоевателя
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21392, Priority = 8, OffHand = true, Races = { 1 }, SuffixId = 0 }); -- Серп Непреклонной силы
@@ -261,7 +261,7 @@ table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21692, Priority = 3,
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21701, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 }); -- Плащ сосредоточенной ненависти
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21710, Priority = 1, OffHand = false, Races = nil, SuffixId = 0 }); -- Плащ Павшего Бога
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21809, Priority = 4, OffHand = false, Races = nil, SuffixId = 0 }); -- Ярость забытого роя
-table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21814, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 }); -- Кираса Истребления
+table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21814, Priority = 2, OffHand = false, Races = nil, SuffixId = 0 }); -- Кираса Истребления
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21856, Priority = 11, OffHand = false, Races = { 1, 3, 4, 5, 6, 7, 8 }, SuffixId = 0 }); -- Неретзек Кровопийца
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 21856, Priority = 6, OffHand = false, Races = { 2 }, SuffixId = 0 }); -- Неретзек Кровопийца
 table.insert(BIS_LINKS, { ClassId = 1, SpecId = 1, ItemId = 22385, Priority = 3, OffHand = false, Races = nil, SuffixId = 0 }); -- Поножи титана
