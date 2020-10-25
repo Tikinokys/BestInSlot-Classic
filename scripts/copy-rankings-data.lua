@@ -50,8 +50,7 @@ local function copyTable()
                         print("Ranking not found for item: " .. itemId .. ", suffix/faction " .. suffixId .. "/" .. faction);
                     else
                         -- if races is nil, then both factions have same values, no need to duplicate it
-                        if value.races == nil and faction ~= "Horde" then
-                            print("Write " .. itemId .. " item");
+                        if value.races ~= nil or (value.races == nil and faction ~= "Horde") then
                             -- { ClassId = 1, SpecId = 1, ItemId = 19104, Priority = 13, OffHand = true, Races = { 1 }, SuffixId = 0 }
                             file:write("table.insert(BIS_LINKS, {");
                             file:write("ClassId = " .. getFlatPrintString(value.classId) .. ", ");
