@@ -1,3 +1,6 @@
+# 2.5.7 (16.10.2020)
+- Changed current phase
+
 # 2.5.6 (16.10.2020)
 - Added option to change show phases on tooltip (Check addon options).
 - Added some enchants for all classes.
