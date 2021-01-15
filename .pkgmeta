@@ -8,6 +8,7 @@ ignore: # Files and directories beginning with a dot (such as .git) are automati
   - LICENSE.txt
   - CHANGELOG.txt
   - README.md
+  - scripts/
 
 manual-changelog: CHANGELOG.txt
 license-output: LICENSE.txt

@@ -78,8 +78,8 @@ function BIS:HavePhasesCheckboxesChecked()
     for idx, value in ipairs(BestInSlotClassicDB.options.tooltipPhases) do
         if (value) then
             return true;
-        end;
-    end;
+        end ;
+    end ;
     return false;
 end;
 
@@ -121,7 +121,7 @@ function BIS:LoadPlayerInfo()
     localizedRace, race, raceID = UnitRace("player");
 
     -- Player pvp info.
-    pvpRank =  UnitPVPRank("player");
+    pvpRank = UnitPVPRank("player");
 
     -- Player spec info.
     local maxPoints = 0;
@@ -129,7 +129,7 @@ function BIS:LoadPlayerInfo()
 
     -- No need to check the spec when below level 60.
     if level < 60 then
-        return;
+        return ;
     end
 
     -- Trying to find out which spec has this player to load the correct one by default.
@@ -137,16 +137,16 @@ function BIS:LoadPlayerInfo()
     local numTalentTabs = GetNumTalentTabs();
     local talentsPoints = {};
 
-    BIS:logmsg("Num Talent Tabs: "..numTalentTabs, LVL_DEBUG);
+    BIS:logmsg("Num Talent Tabs: " .. numTalentTabs, LVL_DEBUG);
 
-    for idx=1, numTalentTabs, 1 do
+    for idx = 1, numTalentTabs, 1 do
         local name, texture, pointsSpent, fileName = GetTalentTabInfo(idx);
         talentsPoints[idx] = tonumber(pointsSpent);
-        if(tonumber(pointsSpent) > maxPoints) then
+        if (tonumber(pointsSpent) > maxPoints) then
             spec = fileName;
             maxPoints = tonumber(pointsSpent);
         end
-        BIS:logmsg(name..": "..pointsSpent..", "..fileName, LVL_DEBUG);
+        BIS:logmsg(name .. ": " .. pointsSpent .. ", " .. fileName, LVL_DEBUG);
     end
 
     if class == "WARRIOR" and spec == "WarriorFury" then
@@ -183,16 +183,16 @@ function BIS:LoadPlayerInfo()
         end
     end
 
-    BIS:logmsg("Your spec is: "..spec, LVL_DEBUG);
+    BIS:logmsg("Your spec is: " .. spec, LVL_DEBUG);
 end
 
 function BIS:PrintPlayerInfo()
-    BIS:logmsg("Player name: "..name, LVL_DEBUG);
-    BIS:logmsg("Player faction: "..faction, LVL_DEBUG);
-    BIS:logmsg("Player race: "..race, LVL_DEBUG);
-    BIS:logmsg("Player class: "..class, LVL_DEBUG);
-    BIS:logmsg("Player PvP Rank: "..pvpRank, LVL_DEBUG);
-    BIS:logmsg("Player Spec: "..spec, LVL_DEBUG);
+    BIS:logmsg("Player name: " .. name, LVL_DEBUG);
+    BIS:logmsg("Player faction: " .. faction, LVL_DEBUG);
+    BIS:logmsg("Player race: " .. race, LVL_DEBUG);
+    BIS:logmsg("Player class: " .. class, LVL_DEBUG);
+    BIS:logmsg("Player PvP Rank: " .. pvpRank, LVL_DEBUG);
+    BIS:logmsg("Player Spec: " .. spec, LVL_DEBUG);
 end
 
 local function OnGameTooltipSetItem(tooltip)
@@ -213,10 +213,10 @@ local function eventHandler(self, event, args1, ...)
         -- Attempt to prevent buggy display.
         BIS:LoadPlayerInfo();
         BIS:LoadItemInfo();
-        BIS_LibExtraTip:AddCallback({type = "item", callback = OnGameTooltipSetItem, allevents = true})
+        BIS_LibExtraTip:AddCallback({ type = "item", callback = OnGameTooltipSetItem, allevents = true })
         BIS_LibExtraTip:RegisterTooltip(GameTooltip);
         BIS_LibExtraTip:RegisterTooltip(ItemRefTooltip);
-        BIS:logmsg("BestInSlotClassic v"..VERSION.." loaded", LVL_INFO);
+        BIS:logmsg("BestInSlotClassic v" .. VERSION .. " loaded", LVL_INFO);
         loaderFrame:UnregisterAllEvents();
     end
 end

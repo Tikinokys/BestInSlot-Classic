@@ -1,9 +1,9 @@
 ## Author: Wark @ Auberdine-EU
-## X-Min-Interface: 11305
-## Interface: 11305
+## X-Min-Interface: 11306
+## Interface: 11306
 ## Title: Best In Slot Classic
 ## Notes: Keep track of your Best in Slot list!
-## Version: 2.5.6
+## Version: 2.5.7
 ## SavedVariables: BestInSlotClassicGlobalDB
 ## SavedVariablesPerCharacter: BestInSlotClassicDB
 
@@ -46,6 +46,7 @@ modules\cli.lua
 modules\minimap.lua
 modules\bisc_options.lua
 modules\sql.lua
+modules\full_list.lua
 
 # Config.
 config\bis_config.lua

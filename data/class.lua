@@ -1,4 +1,4 @@
-CLASS_IDX = {    
+CLASS_IDX = {
     ["WARRIOR"] = 1,
     ["PALADIN"] = 2,
     ["HUNTER"] = 3,
@@ -10,7 +10,7 @@ CLASS_IDX = {
     ["DRUID"] = 11
 }
 
-CLASS_ID = {    
+CLASS_ID = {
     1,
     2,
     3,

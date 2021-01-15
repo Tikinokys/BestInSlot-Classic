@@ -8,11 +8,11 @@ local prefix = "BISClassic";
 logseverity = { "ERROR", "WARN", "INFO", "DEBUG" };
 local logsettings;
 
-local function report(message)        
+local function report(message)
     print(message);
 end
 
-function BIS:logmsg(msg, level)    
+function BIS:logmsg(msg, level)
     local loglevel = tonumber(level);
     local color;
     if loglevel < LVL_ERROR then
@@ -20,18 +20,18 @@ function BIS:logmsg(msg, level)
     end
     if loglevel > LVL_DEBUG then
         loglevel = LVL_DEBUG;
-    end    
+    end
 
-    if BestInSlotClassicDB.loglevel == "ERROR" then        
+    if BestInSlotClassicDB.loglevel == "ERROR" then
         logsettings = 1;
-    elseif BestInSlotClassicDB.loglevel == "WARN" then        
+    elseif BestInSlotClassicDB.loglevel == "WARN" then
         logsettings = 2;
-    elseif BestInSlotClassicDB.loglevel == "INFO" then        
+    elseif BestInSlotClassicDB.loglevel == "INFO" then
         logsettings = 3;
-    else        
+    else
         logsettings = 4;
     end
-    
+
     if level == LVL_INFO then
         color = "FF33FFFF";
     elseif level == LVL_WARN then
@@ -42,8 +42,8 @@ function BIS:logmsg(msg, level)
         color = "FFFF33FF";
     end
 
-    if logsettings >= loglevel then        
-        report(prefix.." - |c"..color..logseverity[loglevel].."|r - "..msg);            
+    if logsettings >= loglevel then
+        report(prefix .. " - |c" .. color .. logseverity[loglevel] .. "|r - " .. msg);
     end
-    
+
 end

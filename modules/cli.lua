@@ -12,39 +12,47 @@ local function ShowHelp(args)
     BIS:logmsg("BestInSlotClassic usage: ", LVL_INFO);
     BIS:logmsg("/bis help : Show this help", LVL_INFO);
     BIS:logmsg("/bis : Configure the add-on", LVL_INFO);
-    BIS:logmsg("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", LVL_INFO);        
+    BIS:logmsg("/bis loglevel <level> : Set the log level for message output, possible levels are: INFO, WARN, ERROR, DEBUG", LVL_INFO);
     BIS:logmsg("/bis reset : Reset all add-on settings", LVL_INFO);
-    BIS:logmsg("/bis settings: Define add-on general settings", LVL_INFO);        
+    BIS:logmsg("/bis settings: Define add-on general settings", LVL_INFO);
     BIS:logmsg("/bis version: Displays the add-on version", LVL_INFO);
     BIS:logmsg("/bis tooltip: Enable or disable the tooltip enrichment with BIS information", LVL_INFO);
     BIS:logmsg("/bis obtained: Define whether items that you've equipped or in your bag should appear in the result search of your class/spec search", LVL_INFO);
 end
 
 function BIS:HandleLogLevel(args)
-    args = args:lower();    
+    args = args:lower();
 
     local level = {
-        ["info"] = function() BestInSlotClassicDB.loglevel = "INFO"; end,
-        ["warn"] = function() BestInSlotClassicDB.loglevel = "WARN"; end,
-        ["error"] = function() BestInSlotClassicDB.loglevel = "ERROR"; end,
-        ["debug"] = function() BestInSlotClassicDB.loglevel = "DEBUG"; end
+        ["info"] = function()
+            BestInSlotClassicDB.loglevel = "INFO";
+        end,
+        ["warn"] = function()
+            BestInSlotClassicDB.loglevel = "WARN";
+        end,
+        ["error"] = function()
+            BestInSlotClassicDB.loglevel = "ERROR";
+        end,
+        ["debug"] = function()
+            BestInSlotClassicDB.loglevel = "DEBUG";
+        end
     }
 
     if type(level[args]) == "function" then
         level[args]();
-        BIS:logmsg("Log level set to: "..BestInSlotClassicDB.loglevel, LVL_INFO);    
+        BIS:logmsg("Log level set to: " .. BestInSlotClassicDB.loglevel, LVL_INFO);
     else
-        BIS:logmsg("Unknown log level "..args, LVL_INFO);
+        BIS:logmsg("Unknown log level " .. args, LVL_INFO);
     end
 
-    
+
 end
 
-local function ShowVersion(args)    
-    BIS:logmsg("BestInSlot - Classic v"..VERSION, LVL_INFO);
+local function ShowVersion(args)
+    BIS:logmsg("BestInSlot - Classic v" .. VERSION, LVL_INFO);
 end
 
-local function HandleTooltip(args)    
+local function HandleTooltip(args)
     BestInSlotClassicDB.options.bistooltip = not BestInSlotClassicDB.options.bistooltip;
     if BestInSlotClassicDB.options.bistooltip then
         BIS:logmsg("Tooltip BIS enrichment function has been enabled", LVL_INFO);
@@ -84,7 +92,7 @@ end
 local function Reset(args)
     ResetDefaults();
     UpdateMinimapIcon();
-    BIS:logmsg("BestInSlotClassic has been reset to default values.", LVL_DEBUG);    
+    BIS:logmsg("BestInSlotClassic has been reset to default values.", LVL_DEBUG);
 end
 
 local function ShowManager(args)
@@ -105,11 +113,11 @@ handlers = {
     [""] = ShowManager,
     ["settings"] = OpenConfigPane,
     ["loglevel"] = HandleLogLevel,
-    ["help"] = ShowHelp,    
+    ["help"] = ShowHelp,
     ["reset"] = Reset,
     ["vars"] = PrintVars,
     ["version"] = ShowVersion,
-    ["tooltip"] = HandleTooltip    
+    ["tooltip"] = HandleTooltip
 }
 
 -- Parser of all commands provided which should start by /bis or /bestinslot.
@@ -117,10 +125,10 @@ handlers = {
 local function HandleCommands(msg, editBox)
     local split = {};
 
-    for substring in msg:gmatch("%S+") do        
+    for substring in msg:gmatch("%S+") do
         table.insert(split, substring);
-    end    
-    
+    end
+
     if split[1] == nil then
         msg = "";
     else
@@ -130,9 +138,9 @@ local function HandleCommands(msg, editBox)
     if type(handlers[msg]) == "function" then
         handlers[msg](split[2]);
     else
-        BIS:logmsg("Unknown command: "..msg, LVL_INFO);
+        BIS:logmsg("Unknown command: " .. msg, LVL_INFO);
         handlers["help"](msg);
-    end    
+    end
 end
 
 -- Slash Commands
